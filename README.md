@@ -1,22 +1,23 @@
-# LHWn - Title
+# LAB04 - Exceptions in C++
 
-_A quick blurb or sub-title text_
+Exceptions are a powerful tool in C++ that allow you to handle errors in a more structured way than simply returning an error code. In this lab, you will be implementing a simple exception hierarchy and using it to handle errors in a simple program.
 
 ## Background
 
 Before proceeding with this lab, the student should take the time to read
 
-* this
-* that
-* and the other thing
+* [C++ Interlude 3 Exceptions](https://msu.vitalsource.com/reader/books/9780138122782/epubcfi/6/188%5B%3Bvnd.vst.idref%3DP70010183410000000000000000027F8%5D!/4/2%5BP70010183410000000000000000027F8%5D/2/2%5BP70010183410000000000000000027F9%5D/7:0%5B%2C%20Ex%5D)
+* [https://cppreference.com/w/cpp/language/exceptions](https://en.cppreference.com/w/cpp/language/exceptions)
 
 ## Objective
 
 Upon successful completion of this lab, the student has learned how to
 
-* do this
-* do that
-* do another thing
+* throw exceptions
+* catch exceptions
+* write program-defined exception classes
+
+in C++.
 
 ## Getting Started
 
@@ -90,33 +91,52 @@ _You may have to type the `q` character to get back to the command line prompt a
 
 This assignment consists of the following tasks:
 
-- Task 1: <TODO: Declare me!>
-- Task 2: <TODO: Declare me!>
-- Task 3: <TODO: Declare me!>
-- Task 4: <TODO: Declare me - or erase me!>
-- Task 5: <TODO: Declare me - or erase me!>
+- Task 1: Throwing Exceptions
+- Task 2: Handling Exceptions
+- Task 3: Writing Custom Exception Classes
 
-Pol, neuter abactor!
+In these tasks, if you are asked to write a function and no return value is expected, define the function as a void function. Since all of your definitions will occur in a header file [include/csc232.h](include/csc232.h), you should also begin the definition with the `inline` keyword. Finally, don't forget to add Doxygen comments to document your functions. At a minimum, these should include tags such as:
 
-### Task 1: <TODO: Declare me!>
+- `@brief` for a brief description of the function
+- `@param` for each parameter, describing what it is and what it does
+- `@return` for the return value (if applicable)
+- `@throw` for any exceptions that may be thrown
 
-Ecce, urbs!
+In addition, you can also include tags such as:
 
-### Task 2: <TODO: Declare me!>
+- `@pre` for any preconditions that must be met before the function is called
+- `@post` for any postconditions that are guaranteed to be true after the function is called
 
-Ubi est dexter medicina?
+See [Appendix C C++ Documentation Systems](https://msu.vitalsource.com/reader/books/9780138122782/epubcfi/6/608%5B%3Bvnd.vst.idref%3DP70010183410000000000000000076A5%5D!/4/2%5BP70010183410000000000000000076A5%5D/2/2%5BP70010183410000000000000000076A6%5D/7:5%5B%2B%20D%2Cocu%5D) for more details.
+### Task 1: Throwing Exceptions
 
-### Task 3: <TODO: Declare me!>
+1. Locate the `TEST_TASK1` macro in `include/csc232.h` and toggle its value from `FALSE` to `TRUE`.
+2. Locate the `TODO: Task 1` comment in `include/csc232.h` and implement the following:
+    1. Create a function named `throw_exception` that takes an integer parameter named `value`.
+    2. Inside the function, throw an exception of type `std::runtime_error` with the message "An exception was thrown!" if the value is less than 0.
+    3. If the value is greater than or equal to 0, print the value to the console.
+3. Run the unit tests to verify that your implementation is correct.
+4. If the unit tests pass, stage, commit, and push your changes to GitHub.
 
-Ubi est dexter medicina?
+### Task 2: Handling Exceptions
 
-### Task 4: <TODO: Declare me!>
+1. Locate the `TEST_TASK2` macro in `include/csc232.h` and toggle its value from `FALSE` to `TRUE`.
+2. Locate the `TODO: Task 2` comment in `include/csc232.h` and implement the following:
+    1. Create a function named `handle_exception` that takes an integer parameter named `value`.
+    2. Inside the function, call the `throw_exception` function with the value parameter.
+    3. Use a `try` block to catch the exception thrown by the `throw_exception` function.
+    4. If the exception is caught, print the exception message to the console.
+3. Run the unit tests to verify that your implementation is correct.
+4. If the unit tests pass, stage, commit, and push your changes to GitHub.
 
-Ubi est dexter medicina?
+### Task 3: Writing Custom Exception Classes
 
-### Task 5: <TODO: Declare me!>
-
-Ubi est dexter medicina?
+1. Locate the `TEST_TASK3` macro in `include/csc232.h` and toggle its value from `FALSE` to `TRUE`.
+2. Locate the `TODO: Task 3` comment in `include/csc232.h` and implement the following:
+    1. Create a custom exception class named `NegativeValueException` that inherits from `std::runtime_error`.
+    2. The `NegativeValueException` class should have a constructor that takes a string parameter named `message` and passes it to the base class constructor.
+3. Run the unit tests to verify that your implementation is correct.
+4. If the unit tests pass, stage, commit, and push your changes to GitHub.
 
 ## Submission Details
 
@@ -152,7 +172,7 @@ be granted for this oversight**.
 
 ### Due Date
 
-Your assignment submission is due by 11:59 PM, Saturday....
+Your assignment submission is due by the end of the lab period. After the due date, the assignment will be considered late.
 
 ### Grading Rubric
 

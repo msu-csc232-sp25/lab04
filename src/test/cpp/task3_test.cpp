@@ -33,6 +33,29 @@ namespace csc232 {
 
 #else
     // TODO: Add unit tests as needed for task 3
+    TEST_F(Task3TestFixture, ItDefinedCustomExceptionClass) {
+        ASSERT_TRUE( isClassInNamespaceDeclared("./csc232.h", "csc232", "NegativeValueException"))  ;
+        ASSERT_TRUE( isClassDerivedFromBase("./csc232.h", "csc232", "NegativeValueException", "std::runtime_error"));
+    }
+
+    TEST_F(Task3TestFixture, ItThrowsNegativeValueException) {
+        // Arrange
+        const std::string expected{ "An exception was thrown by none other than, Jim Daehn!" };
+        testing::internal::CaptureStderr();
+
+        // Act
+        try {
+            throw NegativeValueException(expected);
+        }
+        catch (const NegativeValueException& e) {
+            std::cerr << e.what();
+        }
+
+        // Assert
+        const std::string actual = testing::internal::GetCapturedStderr();
+        ASSERT_STREQ(expected.c_str(), actual.c_str());
+    }
+
 #endif
 
 } // end namespace csc232
