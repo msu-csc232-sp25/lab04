@@ -169,32 +169,6 @@ namespace csc232
             return false;
         }
 
-        bool hasFunctionWithSignature( const std::string & filePath, const std::string & returnType,
-                                       const std::string & functionName, const std::string & paramName,
-                                       const std::string & paramType )
-        {
-            std::ifstream file( filePath );
-            if ( !file.is_open( ) )
-            {
-                std::cerr << "Could not open the file!" << std::endl;
-                return false;
-            }
-
-            std::string line;
-            std::regex functionRegex(
-                    R"(\s*)" + returnType + R"(\s+)" + functionName + R"(\s*\(\s*)" + paramType + R"(\s+)" + paramName +
-                    R"(\s*\)\s*)" );
-            while ( std::getline( file, line ) )
-            {
-                if ( std::regex_search( line, functionRegex ) )
-                {
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         virtual bool isMethodDeclaredInClass( const std::string & filePath, const std::string & namespaceName,
                                               const std::string & className, const std::string & methodName )
         {
@@ -227,6 +201,32 @@ namespace csc232
                     return true;
                 }
             }
+            return false;
+        }
+
+        bool hasFunctionWithSignature( const std::string & filePath, const std::string & returnType,
+                                       const std::string & functionName, const std::string & paramName,
+                                       const std::string & paramType )
+        {
+            std::ifstream file( filePath );
+            if ( !file.is_open( ) )
+            {
+                std::cerr << "Could not open the file!" << std::endl;
+                return false;
+            }
+
+            std::string line;
+            std::regex functionRegex(
+                    R"(\s*)" + returnType + R"(\s+)" + functionName + R"(\s*\(\s*)" + paramType + R"(\s+)" + paramName +
+                    R"(\s*\)\s*)" );
+            while ( std::getline( file, line ) )
+            {
+                if ( std::regex_search( line, functionRegex ) )
+                {
+                    return true;
+                }
+            }
+
             return false;
         }
 
