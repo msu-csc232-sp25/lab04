@@ -14,21 +14,24 @@
 #include <gtest/gtest.h>
 #include "csc232_test_utils.h"
 
-namespace csc232 {
-    class Task3TestFixture : public CSC232BaseTestFixture {
+namespace csc232
+{
+    class Task3TestFixture : public CSC232BaseTestFixture
+    {
     public:
-        Task3TestFixture() = default;
+        Task3TestFixture( ) = default;
 
-        ~Task3TestFixture() override = default;
+        ~Task3TestFixture( ) override = default;
 
     protected:
         // Reusable objects for each unit test in this test fixture
     };
 
 #if !TEST_TASK3
-    TEST_F(Task3TestFixture, Bootstrap) {
+    TEST_F( Task3TestFixture, Bootstrap )
+    {
         std::cerr << "Task 3 is not ready for evaluation; please toggle the TEST_TASK3 macro to TRUE\n";
-        SUCCEED();
+        SUCCEED( );
     }
 
 #else
