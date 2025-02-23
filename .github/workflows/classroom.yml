@@ -1,4 +1,4 @@
-name: Autograding
+name: Autograding Workflow
 'on':
   - push
   - repository_dispatch
