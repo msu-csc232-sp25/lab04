@@ -62,33 +62,60 @@ using std::setw;
 /**
  * @brief Common namespace for CSC232 identifiers.
  */
-namespace csc232 {
+namespace csc232
+{
     // Add any user-defined functions prescribed in your assignment below
+
+#if TEST_TASK1
+    // TODO: Task 1 - Define the function prescribed below
+
+
+
+    // Do not write below this line within this block for Task 1
+#endif
+
+#if TEST_TASK2
+    // TODO: Task 2 - Define the function prescribed below
+
+
+
+    // Do not write below this line within this block for Task 2
+#endif
+
+#if TEST_TASK3
+    // TODO: Task 3 - Define the class prescribed below
+
+
+
+    // Do not write below this line within this block for Task 3
+#endif
 
     // DO NOT Modify anything below this line
 
-    int preamble(int argc, char *argv[]);
+    int preamble( int argc, char * argv[] );
 
     /**
      * @brief Generate a quasi-random UUID.
      * @return A string representation of a quasi-random UUID.
      */
-    std::string generate_uuid() {
+    std::string generate_uuid( )
+    {
         static std::random_device random_device;
-        static std::mt19937 random_number_generator(random_device());
+        static std::mt19937 random_number_generator( random_device( ) );
 
-        std::uniform_int_distribution<int> dist(0, 15);
+        std::uniform_int_distribution< int > dist( 0, 15 );
 
-        const char *uuid_alphabet = "0123456789abcdef";
-        const bool dash[] = {false, false, false, false, true, false, true, false,
-                             true, false, true, false, false, false, false, false};
+        const char * uuid_alphabet = "0123456789abcdef";
+        const bool dash[] = { false, false, false, false, true, false, true, false,
+                              true, false, true, false, false, false, false, false };
 
         std::string uuid;
-        for (bool dash_location: dash) {
-            if (dash_location)
+        for ( bool dash_location: dash )
+        {
+            if ( dash_location )
                 uuid += "-";
-            uuid += uuid_alphabet[dist(random_number_generator)];
-            uuid += uuid_alphabet[dist(random_number_generator)];
+            uuid += uuid_alphabet[ dist( random_number_generator ) ];
+            uuid += uuid_alphabet[ dist( random_number_generator ) ];
         }
         return uuid;
     }
