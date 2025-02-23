@@ -18,6 +18,15 @@ int main( int argc, char * argv[] )
     std::cout << "Hello, Demo Target!" << std::endl;
     std::cout << "Check out this UUID: " << csc232::generate_uuid( ) << std::endl;
     std::cout << "And another UUID:    " << csc232::generate_uuid( ) << std::endl;
+
+
+
+
+
+    for (;                   ;) break;
+
+    int XCoord, YCoord;
+    
 #if EXECUTE_PREAMBLE
     return csc232::preamble( argc, argv );
 #else
