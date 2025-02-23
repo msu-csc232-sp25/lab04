@@ -1,4 +1,4 @@
-name: Autograding Tests
+name: Autograding
 'on':
   - push
   - repository_dispatch
@@ -7,6 +7,28 @@ permissions:
   actions: read
   contents: read
 jobs:
+  cpp-linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cpp-linter/cpp-linter-action@v2
+        id: linter
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          # style: 'file' 
+          # tidy-checks: 'bugprone-*,readability-*' # Set to empty string to use .clang-tidy config file.
+          step-summary: 'true'
+          extra-args: '-I./include -I/usr/include/c++/9 -std=c++20 -Wall'
+          thread-comments: ${{ github.event_name == 'pull_request' && 'update' }}
+          files-changed-only: 'true'
+          ignore: '.github|src/test/cpp/*|include/csc232_test_utils.h|build'
+          no-lgtm: 'false'
+
+      - name: Fail fast?!
+        if: steps.linter.outputs.clang-tidy-checks-failed > 0
+        run: exit 1
+
   run-autograding-tests:
     runs-on: ubuntu-latest
     if: github.actor != 'github-classroom[bot]'

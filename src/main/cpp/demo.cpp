@@ -13,44 +13,47 @@
 
 #include "csc232.h"
 
-int main(int argc, char *argv[]) {
+auto main( int argc, char * argv[] ) -> int
+{
     std::cout << "Hello, Demo Target!" << std::endl;
-    std::cout << "Check out this UUID: " << csc232::generate_uuid() << std::endl;
-    std::cout << "And another UUID:    " << csc232::generate_uuid() << std::endl;
+    std::cout << "Check out this UUID: " << csc232::generate_uuid( ) << std::endl;
+    std::cout << "And another UUID:    " << csc232::generate_uuid( ) << std::endl;
+
 #if EXECUTE_PREAMBLE
-    return csc232::preamble(argc, argv);
+    return csc232::preamble( argc, argv );
 #else
     return EXIT_SUCCESS;
 #endif
-
 }
 
-int csc232::preamble(int argc, char *argv[]) {
+auto csc232::preamble( int argc, char * argv[] ) -> int
+{
     // An input file to process
-    std::string input_file;
+    auto input_file = std::string{ "demo_data.txt" };
 
     // Check to see if the user has supplied a specific input file for consumption
-    if (argc > 1) {
+    if ( argc > 1 )
+    {
         // It is expected as the first argument
-        input_file = argv[1];
-    } else {
-        // Default input file
-        input_file = "demo_data.txt";
+        input_file = argv[ 1 ];
     }
 
     // Open the file for reading
-    std::ifstream data_file{input_file, std::ios::in};
+    auto data_file = std::ifstream{ input_file, std::ios::in };
 
-    if (!data_file) {
+    if ( !data_file )
+    {
         std::cout << "Could not open \"" << input_file << "\"" << std::endl;
         return EXIT_FAILURE;
-    } else {
-        std::cout << "Successfully opened \"" << input_file << "\"";
-
-        std::cout << "... will now close this file" << std::endl;
-        if (data_file.is_open()) {
-            data_file.close();
-        }
     }
+
+    std::cout << "Successfully opened \"" << input_file << "\"";
+
+    std::cout << "... will now close this file" << std::endl;
+    if ( data_file.is_open( ) )
+    {
+        data_file.close( );
+    }
+
     return EXIT_SUCCESS;
 }
