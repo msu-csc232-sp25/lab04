@@ -19,9 +19,9 @@
 
 #define EXECUTE_PREAMBLE TRUE
 
-#define TEST_TASK1 FALSE
-#define TEST_TASK2 FALSE
-#define TEST_TASK3 FALSE
+#define TEST_TASK1 TRUE
+#define TEST_TASK2 TRUE
+#define TEST_TASK3 TRUE
 #define TEST_TASK4 FALSE
 #define TEST_TASK5 FALSE
 
@@ -68,7 +68,15 @@ namespace csc232
 
 #if TEST_TASK1
     // TODO: Task 1 - Define the function prescribed below
-
+    //@brief throw exception if value is negative
+    //@param value
+    //@throw if value is less than 0
+    inline void throw_exception(int value){
+        if(value < 0){
+            throw std::runtime_error("An exception was thrown!");
+        }
+        std::cout << value;
+    }
 
 
     // Do not write below this line within this block for Task 1
@@ -76,15 +84,28 @@ namespace csc232
 
 #if TEST_TASK2
     // TODO: Task 2 - Define the function prescribed below
-
-
-
+    //@brief handles exceptions that have been thrown
+    //@param value
+    void handle_exception(int value){
+        try{
+            throw_exception(value);
+        }
+        catch(const std::runtime_error& e){
+            std::cerr << e.what();
+        }
+    }
     // Do not write below this line within this block for Task 2
 #endif
 
 #if TEST_TASK3
     // TODO: Task 3 - Define the class prescribed below
-
+    class NegativeValueException: public std::runtime_error{
+        public:
+        //constructor that passes message to base class
+        NegativeValueException(const std::string& message)
+        : std::runtime_error(message){
+        }; // end constructor
+    };
 
 
     // Do not write below this line within this block for Task 3
